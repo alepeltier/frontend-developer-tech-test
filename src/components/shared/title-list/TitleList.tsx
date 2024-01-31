@@ -67,7 +67,7 @@ const TitleList = ({ initialData, className }: TitleListProps) => {
 
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <TitleListPagination next={initialData.next} page={initialData.page} />
+      <TitleListPagination next={initialData.next} />
       <div className="grid grid-cols-2 3 gap-3 md:grid-cols-3 lg:grid-cols-5">
         {initialData.results.map((title) => (
           <TitleCard key={title.id} href={`/titles/${title.id}`}>
