@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton/Skeleton";
 import { AspectRatio } from "@/components/ui/aspect-ratio/AspectRatio";
 
 export interface TitleImageProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,6 +13,8 @@ export interface TitleImageProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const TitleImage = React.forwardRef<HTMLDivElement, TitleImageProps>(
   ({ className, src, alt, ...props }, ref) => {
+    const [loaded, setLoaded] = React.useState(false);
+
     return (
       <AspectRatio
         ratio={12 / 19}
@@ -17,6 +22,7 @@ const TitleImage = React.forwardRef<HTMLDivElement, TitleImageProps>(
         ref={ref}
         {...props}
       >
+        {!loaded ? <Skeleton className="w-full h-full" /> : null}
         <Image
           src={src}
           alt={alt}
@@ -24,6 +30,8 @@ const TitleImage = React.forwardRef<HTMLDivElement, TitleImageProps>(
             objectFit: "cover",
             objectPosition: "center",
           }}
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
           fill
           quality={50}
           sizes="(max-width: 768px) 300px, (max-width: 1200px) 200px, 180px"
