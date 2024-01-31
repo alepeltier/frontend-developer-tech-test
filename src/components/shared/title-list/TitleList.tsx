@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { GetManyTitlesResponse } from "@/services/titleServices";
 import { TitleCard, TitleImage, TitleCardInfo } from "../title-card/TitleCard";
+import { Suspense } from "react";
 
 export interface TitleListPaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -67,7 +68,9 @@ const TitleList = ({ initialData, className }: TitleListProps) => {
 
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <TitleListPagination next={initialData.next} />
+      <Suspense>
+        <TitleListPagination next={initialData.next} />
+      </Suspense>
       <div className="grid grid-cols-2 3 gap-3 md:grid-cols-3 lg:grid-cols-5">
         {initialData.results.map((title) => (
           <TitleCard key={title.id} href={`/titles/${title.id}`}>
@@ -82,7 +85,9 @@ const TitleList = ({ initialData, className }: TitleListProps) => {
           </TitleCard>
         ))}
       </div>
-      <TitleListPagination next={initialData.next} />
+      <Suspense>
+        <TitleListPagination next={initialData.next} />
+      </Suspense>
     </div>
   );
 };
