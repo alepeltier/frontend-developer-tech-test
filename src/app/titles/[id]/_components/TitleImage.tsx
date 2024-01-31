@@ -6,6 +6,8 @@ interface TitleImageProps {
   alt: string;
 }
 
+// TODO - add skeleton loading and error handling
+
 export default function TitleImage({ src, alt }: TitleImageProps) {
   return (
     <AspectRatio className="flex justify-center items-center rounded-2xl overflow-hidden">

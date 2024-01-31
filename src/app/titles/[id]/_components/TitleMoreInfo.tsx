@@ -2,7 +2,8 @@ interface TitleMoreInfoProps<T = any> {
   titleData: T;
 }
 
-// TODO breakdown into components
+// TODO - breakdown into components
+// TODO - fix types
 
 export default function TitleMoreInfo({ titleData }: TitleMoreInfoProps) {
   return (

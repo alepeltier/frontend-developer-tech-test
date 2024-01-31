@@ -1,8 +1,8 @@
 import { Badge } from "@/components/ui/badge/Badge";
 import { secondsToMin } from "@/lib/utils";
 
-//TODO breakdown into components
-// TODO fix types
+// TODO - make more modular
+// TODO - fix types either type guards or type casting
 interface TitleInfoProps<T = any> {
   titleData: T;
 }
