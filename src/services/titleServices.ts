@@ -1,11 +1,13 @@
 import axios from "axios";
 
-const RAPID_BASE_URL = process.env.RAPID_API_BASE_URL;
+const RAPID_API_KEY = "f3ebaab43amsh5091701e976d199p11ddcdjsna8253cfa57eb";
+const RAPID_API_HOST = "moviesdatabase.p.rapidapi.com";
+const RAPID_API_BASE_URL = "https://moviesdatabase.p.rapidapi.com";
 
 const options = {
   headers: {
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY,
-    "X-RapidAPI-Host": process.env.RAPID_API_HOST,
+    "X-RapidAPI-Key": RAPID_API_KEY,
+    "X-RapidAPI-Host": RAPID_API_HOST,
   },
 };
 
@@ -36,7 +38,7 @@ export default {
   getManyTitles: async (
     params?: GetManyTitlesParams
   ): Promise<GetManyTitlesResponse> => {
-    const getManyTitlesUrl = `${RAPID_BASE_URL}/titles`;
+    const getManyTitlesUrl = `${RAPID_API_BASE_URL}/titles`;
     const response = await axios.get<GetManyTitlesResponse>(getManyTitlesUrl, {
       ...options,
       params,
@@ -47,7 +49,7 @@ export default {
     id: string,
     params: Partial<GetSingleTitleParams>
   ): Promise<GetSingleTitleResponse> => {
-    const getSingleTitleUrl = `${RAPID_BASE_URL}/titles/${id}`;
+    const getSingleTitleUrl = `${RAPID_API_BASE_URL}/titles/${id}`;
     const response = await axios.get<GetSingleTitleResponse>(
       getSingleTitleUrl,
       {
