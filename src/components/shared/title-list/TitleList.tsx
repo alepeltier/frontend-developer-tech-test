@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button/Button";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { GetManyTitlesResponse } from "@/services/titleServices";
 import { TitleCard, TitleImage, TitleCardInfo } from "../title-card/TitleCard";
@@ -11,15 +11,12 @@ import { TitleCard, TitleImage, TitleCardInfo } from "../title-card/TitleCard";
 export interface TitleListPaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
   next: string | null;
-  page: string;
 }
 
-const TitleListPagination = ({
-  next,
-  page,
-  className,
-}: TitleListPaginationProps) => {
+const TitleListPagination = ({ next, className }: TitleListPaginationProps) => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
 
   return (
     <div className={cn("w-full flex gap-1 justify-end", className)}>
@@ -30,7 +27,7 @@ const TitleListPagination = ({
         asChild
       >
         <Link
-          href={`${pathname}?page=${parseInt(page) - 1}`}
+          href={`${pathname}${page ? `?page=${parseInt(page) - 1}` : ""}`}
           className={cn({
             "opacity-40 pointer-events-none": !page || page?.toString() === "1",
           })}
@@ -41,7 +38,7 @@ const TitleListPagination = ({
       </Button>
       <Button size="sm" variant="outline" disabled={!next} asChild>
         <Link
-          href={`${pathname}?page=${parseInt(page) + 1}`}
+          href={`${pathname}${page ? `?page=${parseInt(page) + 1}` : ""}`}
           className={cn({
             "opacity-40 pointer-events-none": !next,
           })}
@@ -85,7 +82,7 @@ const TitleList = ({ initialData, className }: TitleListProps) => {
           </TitleCard>
         ))}
       </div>
-      <TitleListPagination next={initialData.next} page={initialData.page} />
+      <TitleListPagination next={initialData.next} />
     </div>
   );
 };
