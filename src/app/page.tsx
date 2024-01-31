@@ -1,4 +1,5 @@
 import WidthContainer from "@/components/layout/width-container/WidthContainer";
+import { TitleList } from "@/components/shared/title-list/TitleList";
 import titleServices from "@/services/titleServices";
 
 export default async function Home({
@@ -14,12 +15,10 @@ export default async function Home({
     limit: 20,
   });
 
-  console.log("data", data);
-
   return (
-    <div className="bg-amber-500">
+    <div className="my-8 px-4">
       <WidthContainer>
-        <p>Home</p>
+        <TitleList initialData={data} />
       </WidthContainer>
     </div>
   );
