@@ -2,6 +2,8 @@ import WidthContainer from "@/components/layout/width-container/WidthContainer";
 import { TitleList } from "@/components/shared/title-list/TitleList";
 import titleServices from "@/services/titleServices";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home({
   searchParams,
 }: {
