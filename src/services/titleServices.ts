@@ -1,9 +1,5 @@
 import axios from "axios";
 
-// const RAPID_API_KEY = "f3ebaab43amsh5091701e976d199p11ddcdjsna8253cfa57eb";
-// const RAPID_API_HOST = "moviesdatabase.p.rapidapi.com";
-// const RAPID_API_BASE_URL = "https://moviesdatabase.p.rapidapi.com";
-
 const RAPID_BASE_URL = process.env.RAPID_API_BASE_URL;
 
 const options = {
@@ -33,7 +29,6 @@ export interface GetManyTitlesParams {
 }
 
 interface GetSingleTitleParams {
-  id: string;
   info?: string; // provide pre-defined list
 }
 
@@ -50,7 +45,7 @@ export default {
   },
   getSingleTitle: async (
     id: string,
-    params?: GetSingleTitleParams
+    params: Partial<GetSingleTitleParams>
   ): Promise<GetSingleTitleResponse> => {
     const getSingleTitleUrl = `${RAPID_BASE_URL}/titles/${id}`;
     const response = await axios.get<GetSingleTitleResponse>(
