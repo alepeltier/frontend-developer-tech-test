@@ -1,9 +1,11 @@
-import Image from "next/image";
+import WidthContainer from "@/components/layout/width-container/WidthContainer";
 
 export default function Home() {
   return (
-    <main className="">
-      <p>Home</p>
-    </main>
+    <div className="bg-amber-500">
+      <WidthContainer>
+        <p>Home</p>
+      </WidthContainer>
+    </div>
   );
 }
