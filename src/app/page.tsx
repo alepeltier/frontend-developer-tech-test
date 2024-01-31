@@ -2,8 +2,12 @@ import WidthContainer from "@/components/layout/width-container/WidthContainer";
 import { TitleList } from "@/components/shared/title-list/TitleList";
 import titleServices from "@/services/titleServices";
 
-export default async function Home(props: { searchParams?: { page: string } }) {
-  const page = new URLSearchParams(props?.searchParams).get("page");
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: { page: string };
+}) {
+  const page = new URLSearchParams(searchParams).get("page");
 
   const data = await titleServices.getManyTitles({
     page: page ? parseInt(page) : 1,
