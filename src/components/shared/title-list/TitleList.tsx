@@ -17,7 +17,7 @@ export interface TitleListPaginationProps
 const TitleListPagination = ({ next, className }: TitleListPaginationProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const page = searchParams.get("page");
+  const page = searchParams.get("page") || "1";
 
   return (
     <div className={cn("w-full flex gap-1 justify-end", className)}>
@@ -28,9 +28,9 @@ const TitleListPagination = ({ next, className }: TitleListPaginationProps) => {
         asChild
       >
         <Link
-          href={`${pathname}${page ? `?page=${parseInt(page) - 1}` : ""}`}
+          href={`${pathname}${`?page=${parseInt(page) - 1}`}`}
           className={cn({
-            "opacity-40 pointer-events-none": !page || page?.toString() === "1",
+            "opacity-40 pointer-events-none": page?.toString() === "1",
           })}
         >
           <ChevronLeft className="h-4 w-4" />
@@ -39,7 +39,7 @@ const TitleListPagination = ({ next, className }: TitleListPaginationProps) => {
       </Button>
       <Button size="sm" variant="outline" disabled={!next} asChild>
         <Link
-          href={`${pathname}${page ? `?page=${parseInt(page) + 1}` : ""}`}
+          href={`${pathname}${`?page=${parseInt(page) + 1}`}`}
           className={cn({
             "opacity-40 pointer-events-none": !next,
           })}
